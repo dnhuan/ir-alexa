@@ -24,11 +24,11 @@ mapper = {
 
     64: ["wiz-0-brightness-0", "wiz-1-brightness-0", "wiz-2-brightness-0"],
 
-    27: ["wiz-0-warmth-0", "wiz-1-warmth-0", "wiz-2-warmth-0"],
-    31: ["wiz-0-warmth-20", "wiz-1-warmth-20", "wiz-2-warmth-20"],
-    76: ["wiz-0-warmth-40", "wiz-1-warmth-40", "wiz-2-warmth-40"],
-    72: ["wiz-0-warmth-60", "wiz-1-warmth-60", "wiz-2-warmth-60"],
-    68: ["wiz-0-warmth-80", "wiz-1-warmth-80", "wiz-2-warmth-80"],
+    68: ["wiz-0-temp-2200", "wiz-1-temp-2200", "wiz-2-temp-2200"],
+    72: ["wiz-0-temp-2800", "wiz-1-temp-2800", "wiz-2-temp-2800"],
+    76: ["wiz-0-temp-3300", "wiz-1-temp-3300", "wiz-2-temp-3300"],
+    31: ["wiz-0-temp-4300", "wiz-1-temp-4300", "wiz-2-temp-4300"],
+    27: ["wiz-0-temp-4900", "wiz-1-temp-4900", "wiz-2-temp-4900"],
 }
 bulbs = []
 
@@ -47,9 +47,9 @@ async def send_wiz_commands(commands):
                 await light.turn_off()
             else:
                 await light.turn_on(PilotBuilder(brightness = int(brightness / 100 * 255)))
-        elif mode == "warmth":
-            warmth = int(params[3])
-            await light.turn_on(PilotBuilder(warm_white = int(warmth / 100 * 255)))
+        elif mode == "temp":
+            temp = int(params[3])
+            await light.turn_on(PilotBuilder(colortemp = temp))
         else:
             pass
 
